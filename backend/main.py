@@ -1,23 +1,6 @@
-from database.db import Base, engine
-from core import models
+import os
 
-Base.metadata.create_all(bind=engine)
-
-from fastapi import FastAPI
-from api.routes import router
-
-app = FastAPI(
-    title="ChronoFuture OS v3.0",
-    description="Civilización Ciber Maya",
-    version="3.0"
-)
-
-app.include_router(router)
-
-@app.get("/")
-def root():
-    return {
-        "system": "ChronoFuture OS",
-        "status": "online",
-        "message": "Núcleo ciber maya iniciado"
-    }
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
