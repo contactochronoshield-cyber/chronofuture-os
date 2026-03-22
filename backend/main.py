@@ -1,6 +1,15 @@
-import os
+from fastapi import FastAPI
 
-if __name__ == "__main__":
-    import uvicorn
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("main:app", host="0.0.0.0", port=port)
+app = FastAPI(title="ChronoFuture API")
+
+@app.get("/")
+def root():
+    return {"message": "ChronoFuture está ONLINE 🚀"}
+
+@app.get("/system")
+def system():
+    return {
+        "name": "ChronoFuture OS",
+        "status": "active",
+        "version": "3.2"
+    }
