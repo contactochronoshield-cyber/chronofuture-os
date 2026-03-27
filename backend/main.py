@@ -1,6 +1,16 @@
-from fastapi import FastAPI
+kkfrom fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI(title="ChronoFuture API")
+app = FastAPI()
+
+# 🔥 PERMITIR TODO (para pruebas)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def root():
